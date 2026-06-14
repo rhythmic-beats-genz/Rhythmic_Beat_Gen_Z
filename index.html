@@ -6,16 +6,13 @@
     <title>Premium Rhythmic Beats</title>
     <style>
         /* Premium Cyberpunk & Dark Aesthetic */
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
         body {
             background-color: #08080c;
             color: #ffffff;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 40px 20px;
-            display: block;
         }
         .container {
             max-width: 650px;
@@ -41,38 +38,17 @@
             line-height: 1.6;
         }
         
-        /* Premium Audio Player Container */
-        .player-box {
-            background: #181824;
-            border: 1px solid #2a2a3a;
-            border-radius: 15px;
-            padding: 25px;
+        /* SoundCloud Responsive Wrapper */
+        .soundcloud-wrapper {
             margin: 30px 0;
-        }
-        .track-info {
-            color: #e4e4e7;
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        .genre-tag {
-            color: #ffaa00;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            display: inline-block;
-        }
-        audio {
-            width: 100%;
-            margin-top: 10px;
-            outline: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid #2a2a3a;
         }
         
         /* Store Controls & Buttons */
-        .button-group {
-            margin-top: 30px;
-        }
+        .button-group { margin-top: 30px; }
         .btn {
             display: block;
             width: 100%;
@@ -94,6 +70,15 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(255, 42, 95, 0.5);
         }
+        .btn-kofi {
+            background: #29abe2;
+            color: #ffffff;
+            box-shadow: 0 5px 20px rgba(41, 171, 226, 0.3);
+        }
+        .btn-kofi:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(41, 171, 226, 0.5);
+        }
         .btn-soundcloud {
             background: #1e1e2f;
             color: #ff5500;
@@ -104,12 +89,7 @@
             color: #ffffff;
             transform: translateY(-2px);
         }
-        
-        footer {
-            margin-top: 40px;
-            color: #3f3f46;
-            font-size: 0.85rem;
-        }
+        footer { margin-top: 40px; color: #3f3f46; font-size: 0.85rem; }
     </style>
 </head>
 <body>
@@ -118,19 +98,17 @@
         <h1>RHYTHMIC BEATS</h1>
         <div class="subtitle">Premium high-performance soundtracks curated for elite athletes, hyper-focus, and late-night drives.</div>
         
-        <div class="player-box">
-            <div class="track-info">⚡ Neon Drive (Preview)</div>
-            <div class="genre-tag">Gen Z Phonk / Aggressive</div>
-            
-            <audio controls controlsList="nodownload">
-                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
+        <!-- LIVE SOUNDCLOUD PLAYER -->
+        <div class="soundcloud-wrapper">
+            <!-- SoundCloud Player linked directly to your playlist -->
+            <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1922756315&color=%23ff2a5f&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
         </div>
         
+        <!-- Action Buttons linked to your Stores -->
         <div class="button-group">
-            <a href="https://gumroad.com" target="_blank" class="btn btn-gumroad">🛒 BUY UNTAGGED BEAT PACK ($5)</a>
-            <a href="https://soundcloud.com" target="_blank" class="btn btn-soundcloud">🟠 LISTEN ON SOUNDCLOUD</a>
+            <a href="https://rhythmicbeatz5.gumroad.com/l/dgyzv" target="_blank" class="btn btn-gumroad">🛒 BUY UNTAGGED BEAT PACK ($5)</a>
+            <a href="https://ko-fi.com/rhythmicbeats98gmailcom" target="_blank" class="btn btn-kofi">☕ SUPPORT / BUY ON KO-FI</a>
+            <a href="https://soundcloud.com/rhythmic_beat_gen_z" target="_blank" class="btn btn-soundcloud">🟠 LISTEN ON SOUNDCLOUD</a>
         </div>
         
         <footer>© 2026 Rhythmic Beat Gen Z. All Rights Reserved. Securely Monitored.</footer>
@@ -138,17 +116,13 @@
 
     <script>
         /* MAXIMUM SECURITY SHIELD - ANTI COPY & CLONE */
-        
-        // 1. Block Right-Click (Anti-Audio theft)
         document.addEventListener('contextmenu', e => e.preventDefault());
-
-        // 2. Block Developer Tools & Source View Hotkeys
         document.onkeydown = function(e) {
-            if (e.keyCode == 123) return false; // F12
+            if (e.keyCode == 123) return false;
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
             if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U (View Source)
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
         }
     </script>
 </body>
