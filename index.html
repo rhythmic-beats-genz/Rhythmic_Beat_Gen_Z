@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* =========================================
-           SUPER PROFESSIONAL INTRO OVERLAY
+           EXTRA PREMIUM INTRO OVERLAY WITH BOX
         ========================================= */
         #intro-overlay {
             position: fixed;
@@ -18,7 +18,6 @@
             background: #07070a;
             z-index: 99999;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             opacity: 1;
@@ -27,15 +26,31 @@
             box-sizing: border-box;
         }
         
-        /* 1. Logo At The Top */
+        /* The Professional Single Frame Box */
+        .intro-frame {
+            border: 2px solid #00f2fe;
+            padding: 45px 30px;
+            border-radius: 24px;
+            background: rgba(13, 13, 18, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 0 50px rgba(0, 242, 254, 0.25), inset 0 0 20px rgba(0, 242, 254, 0.05);
+            text-align: center;
+        }
+
+        /* Logo inside Frame */
         .intro-logo {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid #00f2fe;
-            margin-bottom: 35px; /* Space between logo and button */
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+            margin-bottom: 35px; 
             animation: pulseGlow 2s infinite ease-in-out;
         }
 
@@ -45,7 +60,7 @@
             100% { box-shadow: 0 0 15px rgba(0, 242, 254, 0.2); transform: scale(1); }
         }
 
-        /* 2. Button In The Middle */
+        /* Initialize System Button */
         .intro-btn {
             background: transparent;
             border: 2px solid #00f2fe;
@@ -53,36 +68,37 @@
             padding: 15px 40px;
             border-radius: 12px;
             cursor: pointer;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 0.95rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
             font-family: 'Segoe UI', Roboto, sans-serif;
-            margin-bottom: 25px; /* Space between button and subtext */
+            margin-bottom: 30px; 
+            display: block;
+            width: 100%;
         }
         .intro-btn:hover {
             background: #00f2fe;
             color: #07070a;
             box-shadow: 0 0 30px rgba(0, 242, 254, 0.7);
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
-        /* 3. Professional Cinematic Text Below Button */
+        /* Professional Cinematic Bottom Text */
         .intro-subtext {
             color: #94a3b8;
-            font-size: 0.75rem;
-            letter-spacing: 5px; /* Cinematic spacing */
-            font-weight: 600;
+            font-size: 0.72rem;
+            letter-spacing: 5px; 
+            font-weight: 700;
             text-transform: uppercase;
             text-align: center;
             font-family: 'Segoe UI', Roboto, sans-serif;
-            min-height: 20px;
+            min-height: 40px;
             opacity: 0.9;
-            text-shadow: 0 0 8px rgba(0, 242, 254, 0.4); /* Premium Glow */
-            max-width: 85%;
-            line-height: 1.6;
+            text-shadow: 0 0 8px rgba(0, 242, 254, 0.4); 
+            line-height: 1.8;
         }
 
         /* =========================================
@@ -369,23 +385,21 @@
 </head>
 <body>
 
-    <!-- =========================================
-         SYSTEM INTRO SCREEN
-    ========================================= -->
+    <!-- SYSTEM INTRO SCREEN (NEW FRAME BOX DESIGN) -->
     <div id="intro-overlay">
-        <!-- 1. Logo On Top -->
-        <img src="1000098674.webp.jpeg" alt="Logo" class="intro-logo">
-        
-        <!-- 2. Button In The Middle -->
-        <button class="intro-btn" onclick="startExperience()">INITIALIZE SYSTEM</button>
-        
-        <!-- 3. Professional Subtext Below Button -->
-        <div id="typewriter-text" class="intro-subtext"></div>
+        <div class="intro-frame">
+            <!-- 1. Logo On Top -->
+            <img src="1000098674.webp.jpeg" alt="Logo" class="intro-logo">
+            
+            <!-- 2. Button In The Middle -->
+            <button class="intro-btn" onclick="startExperience()">INITIALIZE SYSTEM</button>
+            
+            <!-- 3. Cinematic Text Below Button -->
+            <div id="typewriter-text" class="intro-subtext"></div>
+        </div>
     </div>
 
-    <!-- =========================================
-         MAIN INTERFACE CONTAINER
-    ========================================= -->
+    <!-- MAIN INTERFACE CONTAINER -->
     <div class="container">
         <div class="logo-container">
             <img src="1000098674.webp.jpeg" alt="Rhythmic Beats Logo" class="store-logo">
@@ -455,8 +469,8 @@
 
         const MARKET_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/b7b11a82873fab7456d06a55e9aa908723f23c38/market.txt";
 
-        // TYPEWRITER EFFECT WITH FULL PROFESSIONAL TEXT
-        const text = "RHYTHMIC BEATS PRESENTS... OPERATE IN SILENCE";
+        // TYPEWRITER EFFECT
+        const text = "RHYTHMIC BEATS PRESENTS... OPERATE IN SILENCE.";
         let idx = 0;
         function typeWriter() {
             if (idx < text.length) {
@@ -470,34 +484,45 @@
             typeWriter();
         });
 
-        // SYSTEM INITIALIZATION WITH ORIGINAL ROBOTIC VOICE
+        // SYSTEM INITIALIZATION WITH HIGHLY TUNED HARD DEEP MALE VOICE
         function startExperience() {
-            // Restore Original Robotic Voice
             if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
+                window.speechSynthesis.cancel(); // Clear any queued voices
                 const msg = new SpeechSynthesisUtterance("Rhythmic Beats Presents. Operate in silence.");
-                msg.rate = 0.8;
-                msg.pitch = 0.5;
+                
+                // Fine-tuning for ultra professional deep heavy tone
+                msg.lang = 'en-US';
+                msg.rate = 0.72; // Slightly slowed down for dominance
+                msg.pitch = 0.1; // Maximum depth for a powerful heavy baritone tone
+                msg.volume = 1.0;
+
+                // Forcing male voice choice safely across platforms
+                const voices = window.speechSynthesis.getVoices();
+                const deepVoice = voices.find(v => v.name.toLowerCase().includes('google us english male') || 
+                                                  v.name.toLowerCase().includes('male') || 
+                                                  v.name.toLowerCase().includes('david'));
+                if (deepVoice) msg.voice = deepVoice;
+
                 window.speechSynthesis.speak(msg);
             }
 
-            // Remove Overlay
             const overlay = document.getElementById('intro-overlay');
             overlay.style.opacity = '0';
-            setTimeout(() => { 
-                overlay.style.display = 'none'; 
-            }, 500);
+            setTimeout(() => { overlay.style.display = 'none'; }, 500);
         }
 
+        // DYNAMIC DATA LOADING AND LATEST ORDER SORTING SYSTEM
         async function loadTracks() {
             try {
                 const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/64a1f7ed6c5e1105064919c2774d2f01/raw/my-beats.json?nocache=${new Date().getTime()}`);
                 if (!res.ok) throw new Error("Gist failed");
                 const content = await res.json();
+                
+                // RESTORED: Sort by timestamp securely so the newest tracks stay on top
                 cachedTracks = content.sort((a, b) => (b.timestamp || b.time) - (a.timestamp || a.time));
                 renderTracks();
             } catch (error) {
-                document.getElementById('track-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Tracks loaded.</p>`;
+                document.getElementById('track-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Tracks loaded securely.</p>`;
             }
         }
 
@@ -506,12 +531,14 @@
             const seeMoreWrap = document.getElementById('see-more-wrap');
             container.innerHTML = ''; seeMoreWrap.innerHTML = '';
             const tracksToDisplay = showAllTracks ? cachedTracks : cachedTracks.slice(0, 5);
+            
             tracksToDisplay.forEach(track => {
                 const card = document.createElement('div');
                 card.className = 'track-card';
                 card.innerHTML = `<span class="track-name">${track.name}</span><a href="${track.link}" target="_blank" class="listen-btn">PLAY</a>`;
                 container.appendChild(card);
             });
+            
             if (cachedTracks.length > 5) {
                 const btn = document.createElement('button');
                 btn.className = 'btn-see-more';
@@ -527,28 +554,37 @@
                 const res = await fetch(`${rawUrl}?nocache=${new Date().getTime()}`);
                 if (!res.ok) throw new Error("Video Gist failed");
                 const content = await res.json();
+                
+                // RESTORED: Latest sorting mechanics for videos
                 cachedVideos = content.sort((a, b) => b.timestamp - a.timestamp);
                 if(cachedVideos.length > 0) setMainVideo(cachedVideos[0].videoId);
                 renderVideos();
             } catch (error) {
-                document.getElementById('video-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Videos loaded.</p>`;
+                document.getElementById('video-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Videos loaded securely.</p>`;
             }
         }
 
-        function setMainVideo(id) { document.getElementById('main-yt-player').src = `https://www.youtube.com/embed/${id}?autoplay=0`; }
+        function setMainVideo(id) { 
+            document.getElementById('main-yt-player').src = `https://www.youtube.com/embed/${id}?autoplay=0`; 
+        }
 
         function renderVideos() {
             const container = document.getElementById('video-list-container');
             const seeMoreVideosWrap = document.getElementById('see-more-videos-wrap');
             container.innerHTML = ''; seeMoreVideosWrap.innerHTML = '';
             const videosToDisplay = showAllVideos ? cachedVideos : cachedVideos.slice(0, 4);
+            
             videosToDisplay.forEach(video => {
                 const card = document.createElement('div');
                 card.className = 'video-card';
                 card.innerHTML = `<img src="https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg" class="video-thumb" alt="thumbnail"><div class="video-details"><div class="video-title">${video.title}</div></div>`;
-                card.addEventListener('click', () => { setMainVideo(video.videoId); document.getElementById('main-yt-player').scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+                card.addEventListener('click', () => { 
+                    setMainVideo(video.videoId); 
+                    document.getElementById('main-yt-player').scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+                });
                 container.appendChild(card);
             });
+            
             if (cachedVideos.length > 4) {
                 const btn = document.createElement('button');
                 btn.className = 'btn-see-more';
@@ -592,14 +628,16 @@
 
             } catch (error) {
                 console.error(error);
-                container.innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Markets loaded.</p>`;
+                container.innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Markets loaded securely.</p>`;
             }
         }
         
+        // Boot execution
         loadTracks();
         loadVideos();
         loadAffiliateMarkets();
 
+        // Anti-Inspect Elements Security System
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.onkeydown = function(e) {
             if (e.keyCode == 123) return false;
