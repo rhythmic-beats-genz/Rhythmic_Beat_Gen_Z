@@ -6,7 +6,7 @@
     <title>Premium Rhythmic Beats</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* INTRO OVERLAY SYSTEM (ORIGINAL WORKING LAYOUT) */
+        /* INTRO OVERLAY SYSTEM (SUPER PROFESSIONAL LAYOUT) */
         #intro-overlay {
             position: fixed;
             top: 0;
@@ -28,30 +28,24 @@
         
         /* 1. Logo At The Top */
         .intro-premium-logo {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid #00f2fe;
             box-shadow: 0 0 25px rgba(0, 242, 254, 0.3);
-            margin-bottom: 30px; /* Separates logo from the text */
+            margin-bottom: 35px; /* Space between logo and button */
             display: block;
+            animation: pulseGlow 2s infinite ease-in-out;
         }
 
-        /* Original Text Styling */
-        #intro-overlay h1 {
-            color: #00f2fe;
-            font-size: 1.6rem;
-            letter-spacing: 4px;
-            font-weight: 800;
-            text-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            text-align: center;
-            line-height: 1.4;
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 15px rgba(0, 242, 254, 0.2); transform: scale(1); }
+            50% { box-shadow: 0 0 35px rgba(0, 242, 254, 0.5); transform: scale(1.02); }
+            100% { box-shadow: 0 0 15px rgba(0, 242, 254, 0.2); transform: scale(1); }
         }
 
-        /* Original Button Styling */
+        /* 2. Button In The Middle */
         .enter-btn {
             background: transparent;
             border: 2px solid #00f2fe;
@@ -60,20 +54,37 @@
             border-radius: 12px;
             cursor: pointer;
             font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
+            font-size: 0.95rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
             transition: all 0.3s ease;
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
             font-family: 'Segoe UI', Roboto, sans-serif;
+            margin-bottom: 25px; /* Space between button and text */
+            display: block;
         }
         .enter-btn:hover {
             background: #00f2fe;
             color: #07070a;
             box-shadow: 0 0 30px rgba(0, 242, 254, 0.7);
+            transform: scale(1.05);
         }
 
-        /* PREMIUM CYBERPUNK BASE STYLING */
+        /* 3. Small Text Below Button */
+        .small-present-text {
+            color: #64748b;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: center;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            min-height: 20px;
+            opacity: 0.8;
+            display: block;
+        }
+
+        /* PREMIUM CYBERPUNK BASE STYLING (Main Site) */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
@@ -355,16 +366,16 @@
 </head>
 <body>
 
-    <!-- SYSTEM INTRO SCREEN (ORIGINAL WORKING STRUCTURE + LOGO) -->
+    <!-- SYSTEM INTRO SCREEN (NEW PROFESSIONAL STRUCTURE) -->
     <div id="intro-overlay">
         <!-- 1. The Brand Logo added on Top -->
         <img src="1000098674.webp.jpeg" alt="Rhythmic Beats Logo" class="intro-premium-logo">
         
-        <!-- 2. The Original Text -->
-        <h1 id="typewriter-text"></h1>
-        
-        <!-- 3. The Original Initialize Button -->
-        <button class="enter-btn" onclick="startExperience()">Initialize System</button>
+        <!-- 2. The Initialize Button in the Middle -->
+        <button class="enter-btn" onclick="startExperience()">INITIALIZE SYSTEM</button>
+
+        <!-- 3. The Small Subtext Below the Button -->
+        <div id="typewriter-text" class="small-present-text"></div>
     </div>
 
     <!-- MAIN INTERFACE CONTAINER -->
@@ -437,7 +448,7 @@
         const introAudio = new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav");
         introAudio.volume = 0.75;
 
-        // Original Working Typewriter Script
+        // Original Working Typewriter Script targeted to the new small text div
         const text = "RHYTHMIC BEATS PRESENTS...";
         let idx = 0;
         function typeWriter() {
