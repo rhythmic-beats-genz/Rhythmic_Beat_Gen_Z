@@ -69,7 +69,7 @@
             letter-spacing: 0.5px;
         }
         
-        /* CLEAN & STREAMLINED SECTIONS */
+        /* SECTIONS STYLING */
         .section-title {
             font-size: 0.8rem;
             color: #64748b;
@@ -108,6 +108,7 @@
             font-size: 0.95rem; 
             color: #f1f5f9;
             letter-spacing: 0.3px;
+            text-align: left;
         }
         .listen-btn {
             background: #ff5500;
@@ -202,6 +203,7 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
+            margin-top: 10px;
         }
         .btn-see-more:hover {
             color: #29b6f6;
@@ -224,6 +226,7 @@
             margin: 10px 0;
             transition: all 0.25s ease;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
         .btn-gumroad {
             background: linear-gradient(45deg, #ff2a5f, #ff5e00);
@@ -270,7 +273,7 @@
             transition: all 0.25s ease;
         }
         .social-item i {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
         .social-item:hover {
             background: rgba(255, 255, 255, 0.08);
@@ -278,25 +281,23 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         
-        /* Tactical Glow Effects on Hover */
-        .social-item.ig:hover { border-color: #e1306c; color: #e1306c; box-shadow: 0 0 15px rgba(225, 48, 108, 0.2); }
-        .social-item.fb:hover { border-color: #1877f2; color: #1877f2; box-shadow: 0 0 15px rgba(24, 119, 242, 0.2); }
-        .social-item.tt:hover { border-color: #00f2fe; color: #00f2fe; box-shadow: 0 0 15px rgba(0, 242, 254, 0.2); }
-        .social-item.th:hover { border-color: #ffffff; color: #ffffff; box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); }
-        .social-item.pin:hover { border-color: #bd081c; color: #bd081c; box-shadow: 0 0 15px rgba(189, 8, 28, 0.2); }
-        .social-item.yt:hover { border-color: #ff0000; color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.2); }
-        .social-item.sc:hover { border-color: #ff5500; color: #ff5500; box-shadow: 0 0 15px rgba(255, 85, 0, 0.2); }
+        .social-item.ig:hover { border-color: #e1306c; color: #e1306c; }
+        .social-item.fb:hover { border-color: #1877f2; color: #1877f2; }
+        .social-item.tt:hover { border-color: #00f2fe; color: #00f2fe; }
+        .social-item.th:hover { border-color: #ffffff; color: #ffffff; }
+        .social-item.pin:hover { border-color: #bd081c; color: #bd081c; }
+        .social-item.yt:hover { border-color: #ff0000; color: #ff0000; }
+        .social-item.sc:hover { border-color: #ff5500; color: #ff5500; }
 
-        /* AFFILIATE HORIZONTAL MARKET STYLING (CERTIFIED GEARS) */
+        /* ONE-LINE FLEXBOX FOR CERTIFIED GEARS */
         .affiliate-market-section {
             margin-top: 25px;
             text-align: left;
         }
         .market-grid {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
+            justify-content: flex-start;
+            gap: 12px;
             margin-top: 12px;
         }
         .market-item {
@@ -305,18 +306,17 @@
             justify-content: center;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 8px 12px;
+            width: 80px;
             height: 50px;
             border-radius: 14px;
             text-decoration: none;
             transition: all 0.25s ease;
             cursor: pointer;
-            flex: 1;
-            min-width: 80px;
+            padding: 5px;
         }
         .market-item img, .market-item svg {
-            max-width: 100%;
-            height: 18px;
+            max-width: 85%;
+            max-height: 20px;
             object-fit: contain;
             filter: brightness(0) invert(1) opacity(0.65);
             transition: all 0.25s ease;
@@ -337,6 +337,7 @@
 <body>
 
     <div class="container">
+        <!-- LOGO SECTION -->
         <div class="logo-container">
             <img src="./1000098674.webp.jpeg" alt="Rhythmic Beats Logo" class="store-logo">
         </div>
@@ -344,28 +345,34 @@
         <h1>RHYTHMIC BEATS</h1>
         <div class="subtitle">OPERATE IN SILENCE</div>
         
+        <!-- STORES AREA -->
         <div class="button-group">
             <a href="https://rhythmicbeatz5.gumroad.com/l/dgyzv" target="_blank" class="btn btn-gumroad"><i class="fa-solid fa-cart-shopping"></i> BUY UNTAGGED BEAT PACK ($5)</a>
-            <a href="https://ko-fi.com/rhythmicbeats98gmailcom" target="_blank" class="btn btn-kofi"><i class="fa-solid fa-cup-straw-notch"></i> SUPPORT / BUY ON KO-FI</a>
+            <a href="https://ko-fi.com/rhythmicbeats98gmailcom" target="_blank" class="btn btn-kofi">SUPPORT / BUY ON KO-FI</a>
         </div>
 
+        <!-- TRACKS LIST SECTION -->
         <div class="section-title">Latest Tracks</div>
         <div id="track-list-container">
             <p style="color: #64748b; font-size: 0.85rem;">Loading Epic Tracks...</p>
         </div>
-        <div class="see-more-wrap" id="see-more-wrap"></div>
+        <div class="see-more-container" id="see-more-wrap"></div>
 
+        <!-- YOUTUBE VIDEOS SECTION -->
         <div class="section-title">Featured Videos</div>
         
+        <!-- MAIN EMBEDDED PLAYER -->
         <div class="video-player-wrapper">
             <iframe id="main-yt-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
+        <!-- VERTICAL VIDEO LIST -->
         <div id="video-list-container">
             <p style="color: #64748b; font-size: 0.85rem;">Loading Videos...</p>
         </div>
         <div class="see-more-container" id="see-more-videos-wrap"></div>
 
+        <!-- FOLLOW ME ON SECTION -->
         <div class="social-section">
             <div class="section-title">Follow Me On</div>
             <div class="social-grid">
@@ -377,6 +384,7 @@
             </div>
         </div>
 
+        <!-- SUBSCRIBE ME SECTION -->
         <div class="social-section">
             <div class="section-title">Subscribe Me</div>
             <div class="social-grid">
@@ -385,12 +393,14 @@
             </div>
         </div>
 
+        <!-- AFFILIATE MARKETPLACE SECTION (CERTIFIED GEARS) -->
         <div class="affiliate-market-section">
             <div class="section-title">Certified Gears</div>
             <div class="market-grid" id="market-container">
                 <a href="#" class="market-item" id="amazon-link"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"></a>
                 <a href="#" class="market-item" id="fiverr-link"><img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Fiverr_Logo_09.2020.svg" alt="Fiverr"></a>
                 <a href="#" class="market-item" id="ali-link">
+                    <!-- High-Res AliExpress SVG -->
                     <svg viewBox="0 0 120 28" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7.1 20.3c0-3.3 2.3-4.8 5.6-4.8 1.6 0 2.9.3 3.6.6v-1.1c0-1.7-1.1-2.6-3.1-2.6-1.5 0-2.9.5-3.8 1.2l-.9-1.8c1.2-.9 3.2-1.6 5.1-1.6 3.5 0 5.4 1.7 5.4 4.8v7.6c0 1.2.1 2.3.4 3.1h-2.6c-.2-.4-.3-1-.3-1.5-.8.7-2.1 1.7-4.1 1.7-3.2 0-5.3-2.1-5.3-5.6zm9.2-.9v-1.7c-.6-.3-1.5-.5-2.6-.5-2 0-3.2.9-3.2 2.7 0 1.7 1 2.6 2.6 2.6 1.6-.1 2.7-.9 3.2-2.1zM23.1 6.3h2.7v19.4h-2.7V6.3zM29.5 8.7h2.7v2.8h-2.7V8.7zm0 5.3h2.7v11.7h-2.7V14zM44.4 20.2c.1 3.1 2.2 4.6 5.1 4.6 1.9 0 3.4-.5 4.4-1.2l.9 1.9c-1.2.9-3.3 1.7-5.7 1.7-4.9 0-7.5-3.2-7.5-7.9s2.6-8.1 7.2-8.1c4.8 0 6.6 3.6 6.6 7.2 0 .4 0 .6-.1.8H44.4zm6.4-2.1c0-2.2-1.1-3.9-3.8-3.9-2.4 0-3.7 1.6-4 3.9h7.8zM59.9 14h2.5l.2 1.7c.9-1.2 2.3-2.1 4.2-2.1 3.5 0 5 2.3 5 5.7v6.4h-2.7v-6.1c0-2.2-.7-3.5-2.7-3.5-1.7 0-2.9 1.1-3.5 2.7v6.9h-2.7V14zM75.1 21.8c.6 2.1 2.3 3.1 4.7 3.1 1.5 0 2.8-.3 3.6-.8l.7 1.9c-1.1.7-2.8 1.2-4.7 1.2-4.1 0-6.9-2.3-6.9-6.4 0-3.8 2.5-6.6 6.3-6.6 3.9 0 6.1 2.6 6.1 6.1 0 .2 0 .4-.1.5H75.1zm6.5-1.9c0-1.6-.8-2.7-2.5-2.7-1.6 0-2.7 1.1-3.6 2.7h6.1zM89.2 21.5c.8 1.4 2.1 2.2 3.8 2.2 1.5 0 2.4-.6 2.4-1.5 0-.9-.7-1.3-2.5-1.7-2.9-.7-4.5-1.5-4.5-3.8 0-2.4 2.1-4 4.8-4 2 0 3.6.7 4.5 1.7l-1.5 1.6c-.7-.8-1.8-1.2-3-1.2-1.3 0-2.1.6-2.1 1.4 0 .8.6 1.1 2.4 1.5 3.1.7 4.7 1.6 4.7 3.9 0 2.6-2.1 4.2-5.2 4.2-2.3 0-4.4-.9-5.3-2.4l1.9-1.9zM104.2 21.5c.8 1.4 2.1 2.2 3.8 2.2 1.5 0 2.4-.6 2.4-1.5 0-.9-.7-1.3-2.5-1.7-2.9-.7-4.5-1.5-4.5-3.8 0-2.4 2.1-4 4.8-4 2 0 3.6.7 4.5 1.7l-1.5 1.6c-.7-.8-1.8-1.2-3-1.2-1.3 0-2.1.6-2.1 1.4 0 .8.6 1.1 2.4 1.5 3.1.7 4.7 1.6 4.7 3.9 0 2.6-2.1 4.2-5.2 4.2-2.3 0-4.4-.9-5.3-2.4l1.9-1.9z"/>
                     </svg>
@@ -407,7 +417,7 @@
         let showAllTracks = false;
         let showAllVideos = false;
 
-        // 🌟 1. FETCH TRACKS FUNCTION
+        // FETCH TRACKS
         async function loadTracks() {
             try {
                 const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/64a1f7ed6c5e1105064919c2774d2f01/raw/my-beats.json?nocache=${new Date().getTime()}`);
@@ -448,7 +458,7 @@
             }
         }
 
-        // 🌟 2. FETCH YOUTUBE VIDEOS FUNCTION
+        // FETCH YOUTUBE VIDEOS
         async function loadVideos() {
             try {
                 const rawUrl = "https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt";
@@ -514,7 +524,7 @@
             }
         }
 
-        // 🌟 3. FIXED AFFILIATE BUTTON CLICKS
+        // AFFILIATE LINKS CLICK HANDLER
         document.querySelectorAll('.market-item').forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
