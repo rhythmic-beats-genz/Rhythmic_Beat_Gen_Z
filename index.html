@@ -287,7 +287,7 @@
         .social-item.yt:hover { border-color: #ff0000; color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.2); }
         .social-item.sc:hover { border-color: #ff5500; color: #ff5500; box-shadow: 0 0 15px rgba(255, 85, 0, 0.2); }
 
-        /* AFFILIATE HORIZONTAL MARKET STYLING */
+        /* AFFILIATE HORIZONTAL MARKET STYLING (CERTIFIED GEARS) */
         .affiliate-market-section {
             margin-top: 25px;
             text-align: left;
@@ -318,7 +318,8 @@
             height: 22px;
             width: auto;
             object-fit: contain;
-            filter: grayscale(100%) brightness(0.8);
+            /* 💡 කළු ලෝගෝ සේරම සුදු කරලා, opacity එක බස්සලා ප්‍රිමියම් ලුක් එකක් දෙනවා */
+            filter: brightness(0) invert(1) opacity(0.6);
             transition: all 0.25s ease;
         }
         .market-item:hover {
@@ -328,7 +329,8 @@
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
         }
         .market-item:hover img {
-            filter: grayscale(0%) brightness(1);
+            /* Hover කරද්දී ලස්සනට ලයිට් එක වදිනවා වගේ Highlight වෙනවා */
+            filter: brightness(0) invert(1) opacity(1);
         }
 
         footer { margin-top: 35px; color: #475569; font-size: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.04); padding-top: 18px; }
@@ -393,9 +395,9 @@
             </div>
         </div>
 
-        <!-- AFFILIATE MARKETPLACE SECTION -->
+        <!-- AFFILIATE MARKETPLACE SECTION (UPDATED TO CERTIFIED GEARS) -->
         <div class="affiliate-market-section">
-            <div class="section-title">Affiliate Marketplace</div>
+            <div class="section-title">Certified Gears</div>
             <div class="market-grid" id="market-container">
                 <p style="color: #64748b; font-size: 0.85rem;">Loading Marketplace...</p>
             </div>
@@ -520,7 +522,6 @@
         // 🌟 3. FETCH AFFILIATE MARKETS FUNCTION
         async function loadAffiliateMarkets() {
             try {
-                // ඔයා එවපු අලුත්ම Gist Raw ලින්ක් එක කෙලින්ම දැම්මා මචං
                 const rawUrl = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/1234238c0de46a9c4c3f3e53265c3a8820eb3724/market.txt"; 
                 
                 const res = await fetch(`${rawUrl}?nocache=${new Date().getTime()}`);
@@ -536,7 +537,6 @@
                     link.href = market.affiliateLink;
                     link.innerHTML = `<img src="${market.logoUrl}" alt="${market.companyName}">`;
                     
-                    // ලින්ක් එක තවම නැත්නම් (# නම්) Coming Soon ඇලර්ට් එකක් පෙන්වීම
                     link.addEventListener('click', (e) => {
                         if(market.affiliateLink === '#') {
                             e.preventDefault(); 
