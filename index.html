@@ -453,10 +453,13 @@
             }
         }
 
-        // 🌟 2. FETCH YOUTUBE VIDEOS FUNCTION
+        // 🌟 2. FETCH YOUTUBE VIDEOS FUNCTION (FIXED MASTER RAW LINK & CACHE BYPASS)
         async function loadVideos() {
             try {
-                const rawUrl = "https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/87c7401dfc8b7c06431f5ba45fd48690eae7c0d6/my-videos.txt";
+                // සදහටම අප්ඩේට් වෙන Master Raw Link එක සෙට් කරා මචං
+                const rawUrl = "https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt";
+                
+                // ?nocache කෑල්ල නිසා Gist එක අප්ඩේට් කරපු ගමන් ලයිව් වීඩියෝ ටික සයිට් එකට එනවා
                 const res = await fetch(`${rawUrl}?nocache=${new Date().getTime()}`);
                 
                 if (!res.ok) throw new Error("Video Gist data fetch failed");
@@ -521,7 +524,6 @@
 
         // 🌟 3. FIXED AFFILIATE MARKETS FUNCTION (DIRECT INJECT)
         async function loadAffiliateMarkets() {
-            // Cache ප්‍රශ්න නැති වෙන්න කෙලින්ම Wikipedia SVG ලින්ක්ස් දාලා හැදුවා මචං
             const markets = [
               {
                 "companyName": "Amazon",
