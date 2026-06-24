@@ -1,1 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Premium Rhythmic Beats</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* =========================================
+           STRICT MOBILE INTRO OVERLAY WITH VISIBLE FRAME
+        ========================================= */
+        #intro-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #07070a;
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        
+        /* Fixed Border Box explicitly tailored for Mobile Viewports */
+        .intro-frame {
+            border: 3px solid #00f2fe !important; 
+            padding: 45px 25px;
+            border-radius: 24px;
+            background: #0d0d12 !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 340px; 
+            box-shadow: 0 0 45px rgba(0, 242, 254, 0.3), inset 0 0 15px rgba(0, 242, 254, 0.1);
+            box-sizing: border-box;
+        }
+
+        .intro-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #00f2fe;
+            margin-bottom: 35px; 
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+            animation: pulseGlow 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 15px rgba(0, 242, 254, 0.2); transform: scale(1); }
+            50% { box-shadow: 0 0 35px rgba(0, 242, 254, 0.5); transform: scale(1.02); }
+            100% { box-shadow: 0 0 15px rgba(0, 242, 254, 0.2); transform: scale(1); }
+        }
+
+        .intro-btn {
+            background: transparent;
+            border: 2px solid #00f2fe;
+            color: #00f2fe;
+            padding: 15px 0;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            margin-bottom: 30px; 
+            display: block;
+            width: 100%; 
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        .intro-btn:hover {
+            background: #00f2fe;
+            color: #07070a;
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.7);
+        }
+
+        .intro-subtext {
+            color: #94a3b8;
+            font-size: 0.72rem;
+            letter-spacing: 5px; 
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            min-height: 40px;
+            text-shadow: 0 0 8px rgba(0, 242, 254, 0.4); 
+            line-height: 1.8;
+        }
+
+        /* =========================================
+           PREMIUM CYBERPUNK BASE STYLING
+        ========================================= */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: #07070a;
+            background-image: linear-gradient(to bottom, rgba(7, 7, 10, 0.8) 30%, #07070a 95%), url('1000098023.jpg.jpeg');
+            background-size: cover;
+            background-position: center top;
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 20px 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 20px 0;
+            background: rgba(13, 13, 18, 0.75);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            padding: 35px 25px;
+            border-radius: 28px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.85);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        /* LOGO STYLING */
+        .logo-container {
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: center;
+        }
+        .store-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #00f2fe;
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.25);
+        }
+
+        h1 { 
+            color: #ffffff; 
+            font-size: 2.1rem; 
+            margin-bottom: 6px; 
+            letter-spacing: 2px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .subtitle { 
+            color: #94a3b8; 
+            font-size: 0.9rem; 
+            margin-bottom: 30px;
+            line-height: 1.5;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* SECTIONS STYLING */
+        .section-title {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 15px;
+            text-align: left;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding-bottom: 6px;
+        }
+
+        #track-list-container {
+            margin: 15px 0 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .track-card {
+            background: rgba(22, 22, 33, 0.45);
+            padding: 12px 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.25s ease;
+        }
+        .track-card:hover { 
+            border-color: rgba(0, 242, 254, 0.3);
+            transform: translateY(-1.5px);
+            background: rgba(30, 30, 45, 0.65);
+        }
+        .track-name { 
+            font-weight: 600; 
+            font-size: 0.95rem; 
+            color: #f1f5f9;
+            letter-spacing: 0.3px;
+            text-align: left;
+        }
+        .listen-btn {
+            background: #ff5500;
+            padding: 7px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: background 0.2s;
+            letter-spacing: 0.5px;
+        }
+        .listen-btn:hover {
+            background: #ff7733;
+        }
+
+        /* YOUTUBE EMBED PLAYER */
+        .video-player-wrapper {
+            width: 100%;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin-bottom: 15px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.1);
+            background: #000;
+        }
+        .video-player-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        #video-list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .video-card {
+            background: rgba(22, 22, 33, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 14px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: left;
+        }
+        .video-card:hover {
+            border-color: rgba(0, 242, 254, 0.3);
+            background: rgba(30, 30, 45, 0.65);
+            transform: translateY(-1.5px);
+        }
+        .video-thumb {
+            width: 100px;
+            height: 65px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .video-details {
+            flex: 1;
+        }
+        .video-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #f1f5f9;
+            line-height: 1.3;
+        }
+
+        .see-more-container { margin-bottom: 35px; }
+        .btn-see-more {
+            background: transparent;
+            color: #00f2fe;
+            border: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.2s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .btn-see-more:hover { color: #29b6f6; transform: scale(1.03); }
+
+        /* PREMIUM STORES BUTTONS */
+        .button-group { margin-bottom: 30px; }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin: 10px 0;
+            transition: all 0.25s ease;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .btn-gumroad { background: linear-gradient(45deg, #ff2a5f, #ff5e00); color: #ffffff; box-shadow: 0 4px 15px rgba(255, 42, 95, 0.2); }
+        .btn-gumroad:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 42, 95, 0.35); }
+        .btn-kofi { background: #29abe2; color: #ffffff; box-shadow: 0 4px 15px rgba(41, 171, 226, 0.2); }
+        .btn-kofi:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(41, 171, 226, 0.35); }
+
+        /* SOCIAL ICON SECTIONS */
+        .social-section { margin-top: 25px; text-align: left; }
+        .social-grid { display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+        .social-item {
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05);
+            width: 50px; height: 50px; border-radius: 14px; text-decoration: none; color: #94a3b8; transition: all 0.25s ease;
+        }
+        .social-item i { font-size: 1.3rem; }
+        .social-item:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        
+        .social-item.ig:hover { border-color: #e1306c; color: #e1306c; }
+        .social-item.fb:hover { border-color: #1877f2; color: #1877f2; }
+        .social-item.tt:hover { border-color: #00f2fe; color: #00f2fe; }
+        .social-item.th:hover { border-color: #ffffff; color: #ffffff; }
+        .social-item.pin:hover { border-color: #bd081c; color: #bd081c; }
+        .social-item.yt:hover { border-color: #ff0000; color: #ff0000; }
+        .social-item.sc:hover { border-color: #ff5500; color: #ff5500; }
+
+        /* CERTIFIED GEARS */
+        .affiliate-market-section { margin-top: 25px; text-align: left; }
+        .market-grid { display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+        
+        .market-item {
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05);
+            width: 90px; height: 50px; border-radius: 14px; text-decoration: none; transition: all 0.25s ease; cursor: pointer; padding: 5px;
+        }
+        .market-item img {
+            max-width: 85%; max-height: 22px; object-fit: contain;
+            filter: brightness(0) invert(1) opacity(0.65); transition: all 0.25s ease;
+        }
+        
+        .market-item .ali-custom-text {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: #ffffff;
+            opacity: 0.65;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            transition: all 0.25s ease;
+            text-align: center;
+            width: 100%;
+            display: block;
+            word-wrap: break-word;
+            padding: 0 2px;
+        }
+
+        .market-item:hover {
+            background: rgba(255, 255, 255, 0.08); transform: translateY(-3px);
+            border-color: #00f2fe; box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+        }
+        .market-item:hover img { filter: brightness(0) invert(1) opacity(1); }
+        .market-item:hover .ali-custom-text { opacity: 1; color: #00f2fe; }
+
+        footer { margin-top: 35px; color: #475569; font-size: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.04); padding-top: 18px; }
+    </style>
+</head>
+<body>
+
+    <!-- SYSTEM INTRO SCREEN WITH EXPLICIT OUTLINE FRAME BOX -->
+    <div id="intro-overlay">
+        <div class="intro-frame">
+            <!-- 1. Logo On Top -->
+            <img src="1000098674.webp.jpeg" alt="Logo" class="intro-logo">
+            
+            <!-- 2. Button In The Middle -->
+            <button class="intro-btn" onclick="startExperience()">INITIALIZE SYSTEM</button>
+            
+            <!-- 3. Professional Cinematic Bottom Text -->
+            <div id="typewriter-text" class="intro-subtext"></div>
+        </div>
+    </div>
+
+    <!-- MAIN INTERFACE CONTAINER -->
+    <div class="container">
+        <div class="logo-container">
+            <img src="1000098674.webp.jpeg" alt="Rhythmic Beats Logo" class="store-logo">
+        </div>
+
+        <h1>RHYTHMIC BEATS</h1>
+        <div class="subtitle">OPERATE IN SILENCE</div>
+        
+        <div class="button-group">
+            <a href="https://rhythmicbeatz5.gumroad.com/l/dgyzv" target="_blank" class="btn btn-gumroad"><i class="fa-solid fa-cart-shopping"></i> BUY UNTAGGED BEAT PACK ($5)</a>
+            <a href="https://ko-fi.com/rhythmicbeats98gmailcom" target="_blank" class="btn btn-kofi">SUPPORT / BUY ON KO-FI</a>
+        </div>
+
+        <div class="section-title">Latest Tracks</div>
+        <div id="track-list-container">
+            <p style="color: #64748b; font-size: 0.85rem;">Securing Beats...</p>
+        </div>
+        <div class="see-more-container" id="see-more-wrap"></div>
+
+        <div class="section-title">Featured Videos</div>
+        <div class="video-player-wrapper">
+            <iframe id="main-yt-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div id="video-list-container">
+            <p style="color: #64748b; font-size: 0.85rem;">Securing Videos...</p>
+        </div>
+        <div class="see-more-container" id="see-more-videos-wrap"></div>
+
+        <div class="social-section">
+            <div class="section-title">Follow Me On</div>
+            <div class="social-grid">
+                <a href="https://www.instagram.com/rythemic_beats_gen_z?igsh=ZWcxeDA2YzRjMnU4" target="_blank" class="social-item ig"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/share/1EKmTesmZm/" target="_blank" class="social-item fb"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.tiktok.com/@rhythmic_beat_gen?_r=1&_t=ZS-97CWO0NtROW" target="_blank" class="social-item tt"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.threads.net/@rythemic_beats_gen_z" target="_blank" class="social-item th"><i class="fa-brands fa-threads"></i></a>
+                <a href="https://pin.it/6xY4QsdOY" target="_blank" class="social-item pin"><i class="fa-brands fa-pinterest"></i></a>
+            </div>
+        </div>
+
+        <div class="social-section">
+            <div class="section-title">Subscribe Me</div>
+            <div class="social-grid">
+                <a href="https://youtube.com/@rhythmic_beat_gen_z?si=_J9fQ4I0EeTiWBNX" target="_blank" class="social-item yt"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://soundcloud.com/rhythmic_beat_gen_z" target="_blank" class="social-item sc"><i class="fa-brands fa-soundcloud"></i></a>
+            </div>
+        </div>
+
+        <!-- AFFILIATE MARKETPLACE -->
+        <div class="affiliate-market-section">
+            <div class="section-title">Certified Gears</div>
+            <div class="market-grid" id="market-container">
+                <p style="color: #64748b; font-size: 0.85rem;">Loading Markets...</p>
+            </div>
+        </div>
+        
+        <footer>© 2026 Rhythmic Beat Gen Z. All Rights Reserved. Securely Monitored.</footer>
+    </div>
+
+    <!-- =========================================
+         JAVASCRIPT ENGINE (DEFINITIVE CONSOLE LOCK)
+    ========================================= -->
+    <script>
+        let cachedTracks = [];
+        let cachedVideos = [];
+        let showAllTracks = false;
+        let showAllVideos = false;
+
+        const MARKET_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/b7b11a82873fab7456d06a55e9aa908723f23c38/market.txt";
+
+        // REAL HIGH-END AUDIO FILE FOR AUTHENTIC DEEP MALE VOICE (Bypasses text-to-speech engine blockages)
+        const heavyMaleVoice = new Audio("https://audio.jofre.de/tts.php?text=Rhythmic+Beats+Presents.+Operate+in+silence.&lang=en-US&voice=Joey");
+        heavyMaleVoice.volume = 1.0;
+
+        // Typewriter Effect
+        const text = "RHYTHMIC BEATS PRESENTS... OPERATE IN SILENCE.";
+        let idx = 0;
+        function typeWriter() {
+            if (idx < text.length) {
+                document.getElementById("typewriter-text").innerHTML += text.charAt(idx);
+                idx++;
+                setTimeout(typeWriter, 80);
+            }
+        }
+        window.addEventListener('DOMContentLoaded', typeWriter);
+
+        // INITIALIZE EXPERIENCE DISPATCHER
+        function startExperience() {
+            try {
+                heavyMaleVoice.play().catch(e => console.log("Audio pipeline requires active viewport touch."));
+            } catch (err) { console.log(err); }
+
+            const overlay = document.getElementById('intro-overlay');
+            overlay.style.opacity = '0';
+            setTimeout(() => { overlay.style.display = 'none'; }, 500);
+        }
+
+        // STRICT CHRONOLOGICAL LATEST ORDER FIX
+        async function loadTracks() {
+            try {
+                const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/64a1f7ed6c5e1105064919c2774d2f01/raw/my-beats.json?nocache=${new Date().getTime()}`);
+                const content = await res.json();
+                
+                // Parsing elements into UNIX timestamps for sorting execution loop
+                cachedTracks = content.sort((a, b) => {
+                    const timeA = a.timestamp ? new Date(a.timestamp).getTime() : (Number(a.time) || 0);
+                    const timeB = b.timestamp ? new Date(b.timestamp).getTime() : (Number(b.time) || 0);
+                    return timeB - timeA;
+                });
+                renderTracks();
+            } catch (e) { console.error(e); }
+        }
+
+        function renderTracks() {
+            const container = document.getElementById('track-list-container');
+            const seeMoreWrap = document.getElementById('see-more-wrap');
+            container.innerHTML = ''; seeMoreWrap.innerHTML = '';
+            const tracksToDisplay = showAllTracks ? cachedTracks : cachedTracks.slice(0, 5);
+            
+            tracksToDisplay.forEach(track => {
+                const card = document.createElement('div');
+                card.className = 'track-card';
+                card.innerHTML = `<span class="track-name">${track.name}</span><a href="${track.link}" target="_blank" class="listen-btn">PLAY</a>`;
+                container.appendChild(card);
+            });
+            
+            if (cachedTracks.length > 5) {
+                const btn = document.createElement('button');
+                btn.className = 'btn-see-more';
+                btn.innerHTML = showAllTracks ? `See Less <i class="fa-solid fa-angle-up"></i>` : `See More <i class="fa-solid fa-angle-down"></i>`;
+                btn.addEventListener('click', () => { showAllTracks = !showAllTracks; renderTracks(); });
+                seeMoreWrap.appendChild(btn);
+            }
+        }
+
+        async function loadVideos() {
+            try {
+                const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt?nocache=${new Date().getTime()}`);
+                const content = await res.json();
+                
+                // Absolute structural layout sorting for video assets
+                cachedVideos = content.sort((a, b) => (Number(b.timestamp) || 0) - (Number(a.timestamp) || 0));
+                if(cachedVideos.length > 0) setMainVideo(cachedVideos[0].videoId);
+                renderVideos();
+            } catch (e) { console.error(e); }
+        }
+
+        function setMainVideo(id) { 
+            document.getElementById('main-yt-player').src = `https://www.youtube.com/embed/${id}?autoplay=0`; 
+        }
+
+        function renderVideos() {
+            const container = document.getElementById('video-list-container');
+            const seeMoreVideosWrap = document.getElementById('see-more-videos-wrap');
+            container.innerHTML = ''; seeMoreVideosWrap.innerHTML = '';
+            const videosToDisplay = showAllVideos ? cachedVideos : cachedVideos.slice(0, 4);
+            
+            videosToDisplay.forEach(video => {
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                card.innerHTML = `<img src="https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg" class="video-thumb" alt="thumbnail"><div class="video-details"><div class="video-title">${video.title}</div></div>`;
+                card.addEventListener('click', () => { 
+                    setMainVideo(video.videoId); 
+                    document.getElementById('main-yt-player').scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+                });
+                container.appendChild(card);
+            });
+            
+            if (cachedVideos.length > 4) {
+                const btn = document.createElement('button');
+                btn.className = 'btn-see-more';
+                btn.innerHTML = showAllVideos ? `See Less <i class="fa-solid fa-angle-up"></i>` : `See More <i class="fa-solid fa-angle-down"></i>`;
+                btn.addEventListener('click', () => { showAllVideos = !showAllVideos; renderVideos(); });
+                seeMoreVideosWrap.appendChild(btn);
+            }
+        }
+
+        async function loadAffiliateMarkets() {
+            const container = document.getElementById('market-container');
+            try {
+                const res = await fetch(`${MARKET_GIST_URL}?nocache=${new Date().getTime()}`);
+                if (!res.ok) throw new Error("Markets system error");
+                const markets = await res.json();
+                container.innerHTML = '';
+
+                markets.forEach(market => {
+                    const block = document.createElement('a');
+                    block.className = 'market-item';
+                    block.href = market.link;
+                    block.target = "_blank";
+
+                    if (market.name && market.name.toLowerCase().includes('ali')) {
+                        block.innerHTML = `<span class="ali-custom-text">AliExpress</span>`;
+                    } else if (market.type === "image") {
+                        block.innerHTML = `<img src="${market.source}" alt="${market.name}">`;
+                    } else {
+                        block.innerHTML = `<span class="ali-custom-text">${market.source}</span>`;
+                    }
+                    container.appendChild(block);
+                });
+            } catch (error) { console.error(error); }
+        }
+        
+        loadTracks();
+        loadVideos();
+        loadAffiliateMarkets();
+
+        // Anti-Inspect Security Shields
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        }
+    </script>
+</body>
+</html>
 
