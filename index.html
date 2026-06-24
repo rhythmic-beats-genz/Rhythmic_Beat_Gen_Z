@@ -294,12 +294,10 @@
         }
         .market-grid {
             display: flex;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 12px;
-            min-height: 50px;
+            justify-content: space-between;
             align-items: center;
+            gap: 10px;
+            margin-top: 12px;
         }
         .market-item {
             display: flex;
@@ -307,18 +305,19 @@
             justify-content: center;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 8px 16px;
+            padding: 8px 12px;
             height: 50px;
             border-radius: 14px;
             text-decoration: none;
             transition: all 0.25s ease;
             cursor: pointer;
+            flex: 1;
+            min-width: 80px;
         }
-        .market-item img {
-            height: 22px;
-            width: auto;
+        .market-item img, .market-item svg {
+            max-width: 100%;
+            height: 18px;
             object-fit: contain;
-            /* කළු ලෝගෝ සේරම සුදු කරලා, සයිබර්පන්ක් ප්‍රිමියම් ලුක් එකක් දෙනවා */
             filter: brightness(0) invert(1) opacity(0.65);
             transition: all 0.25s ease;
         }
@@ -328,8 +327,7 @@
             border-color: #00f2fe;
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
         }
-        .market-item:hover img {
-            /* Hover කරද්දී සුපිරියටම Highlight වෙනවා */
+        .market-item:hover img, .market-item:hover svg {
             filter: brightness(0) invert(1) opacity(1);
         }
 
@@ -339,7 +337,6 @@
 <body>
 
     <div class="container">
-        <!-- LOGO SECTION -->
         <div class="logo-container">
             <img src="./1000098674.webp.jpeg" alt="Rhythmic Beats Logo" class="store-logo">
         </div>
@@ -347,46 +344,39 @@
         <h1>RHYTHMIC BEATS</h1>
         <div class="subtitle">OPERATE IN SILENCE</div>
         
-        <!-- STORES AREA -->
         <div class="button-group">
             <a href="https://rhythmicbeatz5.gumroad.com/l/dgyzv" target="_blank" class="btn btn-gumroad"><i class="fa-solid fa-cart-shopping"></i> BUY UNTAGGED BEAT PACK ($5)</a>
             <a href="https://ko-fi.com/rhythmicbeats98gmailcom" target="_blank" class="btn btn-kofi"><i class="fa-solid fa-cup-straw-notch"></i> SUPPORT / BUY ON KO-FI</a>
         </div>
 
-        <!-- TRACKS LIST SECTION -->
         <div class="section-title">Latest Tracks</div>
         <div id="track-list-container">
             <p style="color: #64748b; font-size: 0.85rem;">Loading Epic Tracks...</p>
         </div>
-        <div class="see-more-container" id="see-more-wrap"></div>
+        <div class="see-more-wrap" id="see-more-wrap"></div>
 
-        <!-- YOUTUBE VIDEOS SECTION -->
         <div class="section-title">Featured Videos</div>
         
-        <!-- MAIN EMBEDDED PLAYER -->
         <div class="video-player-wrapper">
             <iframe id="main-yt-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
-        <!-- VERTICAL VIDEO LIST -->
         <div id="video-list-container">
             <p style="color: #64748b; font-size: 0.85rem;">Loading Videos...</p>
         </div>
         <div class="see-more-container" id="see-more-videos-wrap"></div>
 
-        <!-- FOLLOW ME ON SECTION -->
         <div class="social-section">
             <div class="section-title">Follow Me On</div>
             <div class="social-grid">
                 <a href="https://www.instagram.com/rythemic_beats_gen_z?igsh=ZWcxeDA2YzRjMnU4" target="_blank" class="social-item ig"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://www.facebook.com/share/1EKmTesmZm/" target="_blank" class="social-item fb"><i class="fa-brands fa-facebook"></i></a>
                 <a href="https://www.tiktok.com/@rhythmic_beat_gen?_r=1&_t=ZS-97CWO0NtROW" target="_blank" class="social-item tt"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://www.threads.com/@rythemic_beats_gen_z" target="_blank" class="social-item th"><i class="fa-brands fa-threads"></i></a>
+                <a href="https://www.threads.net/@rythemic_beats_gen_z" target="_blank" class="social-item th"><i class="fa-brands fa-threads"></i></a>
                 <a href="https://pin.it/6xY4QsdOY" target="_blank" class="social-item pin"><i class="fa-brands fa-pinterest"></i></a>
             </div>
         </div>
 
-        <!-- SUBSCRIBE ME SECTION -->
         <div class="social-section">
             <div class="section-title">Subscribe Me</div>
             <div class="social-grid">
@@ -395,11 +385,16 @@
             </div>
         </div>
 
-        <!-- AFFILIATE MARKETPLACE SECTION (CERTIFIED GEARS) -->
         <div class="affiliate-market-section">
             <div class="section-title">Certified Gears</div>
             <div class="market-grid" id="market-container">
-                <p style="color: #64748b; font-size: 0.85rem;">Loading Marketplace...</p>
+                <a href="#" class="market-item" id="amazon-link"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"></a>
+                <a href="#" class="market-item" id="fiverr-link"><img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Fiverr_Logo_09.2020.svg" alt="Fiverr"></a>
+                <a href="#" class="market-item" id="ali-link">
+                    <svg viewBox="0 0 120 28" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.1 20.3c0-3.3 2.3-4.8 5.6-4.8 1.6 0 2.9.3 3.6.6v-1.1c0-1.7-1.1-2.6-3.1-2.6-1.5 0-2.9.5-3.8 1.2l-.9-1.8c1.2-.9 3.2-1.6 5.1-1.6 3.5 0 5.4 1.7 5.4 4.8v7.6c0 1.2.1 2.3.4 3.1h-2.6c-.2-.4-.3-1-.3-1.5-.8.7-2.1 1.7-4.1 1.7-3.2 0-5.3-2.1-5.3-5.6zm9.2-.9v-1.7c-.6-.3-1.5-.5-2.6-.5-2 0-3.2.9-3.2 2.7 0 1.7 1 2.6 2.6 2.6 1.6-.1 2.7-.9 3.2-2.1zM23.1 6.3h2.7v19.4h-2.7V6.3zM29.5 8.7h2.7v2.8h-2.7V8.7zm0 5.3h2.7v11.7h-2.7V14zM44.4 20.2c.1 3.1 2.2 4.6 5.1 4.6 1.9 0 3.4-.5 4.4-1.2l.9 1.9c-1.2.9-3.3 1.7-5.7 1.7-4.9 0-7.5-3.2-7.5-7.9s2.6-8.1 7.2-8.1c4.8 0 6.6 3.6 6.6 7.2 0 .4 0 .6-.1.8H44.4zm6.4-2.1c0-2.2-1.1-3.9-3.8-3.9-2.4 0-3.7 1.6-4 3.9h7.8zM59.9 14h2.5l.2 1.7c.9-1.2 2.3-2.1 4.2-2.1 3.5 0 5 2.3 5 5.7v6.4h-2.7v-6.1c0-2.2-.7-3.5-2.7-3.5-1.7 0-2.9 1.1-3.5 2.7v6.9h-2.7V14zM75.1 21.8c.6 2.1 2.3 3.1 4.7 3.1 1.5 0 2.8-.3 3.6-.8l.7 1.9c-1.1.7-2.8 1.2-4.7 1.2-4.1 0-6.9-2.3-6.9-6.4 0-3.8 2.5-6.6 6.3-6.6 3.9 0 6.1 2.6 6.1 6.1 0 .2 0 .4-.1.5H75.1zm6.5-1.9c0-1.6-.8-2.7-2.5-2.7-1.6 0-2.7 1.1-3.6 2.7h6.1zM89.2 21.5c.8 1.4 2.1 2.2 3.8 2.2 1.5 0 2.4-.6 2.4-1.5 0-.9-.7-1.3-2.5-1.7-2.9-.7-4.5-1.5-4.5-3.8 0-2.4 2.1-4 4.8-4 2 0 3.6.7 4.5 1.7l-1.5 1.6c-.7-.8-1.8-1.2-3-1.2-1.3 0-2.1.6-2.1 1.4 0 .8.6 1.1 2.4 1.5 3.1.7 4.7 1.6 4.7 3.9 0 2.6-2.1 4.2-5.2 4.2-2.3 0-4.4-.9-5.3-2.4l1.9-1.9zM104.2 21.5c.8 1.4 2.1 2.2 3.8 2.2 1.5 0 2.4-.6 2.4-1.5 0-.9-.7-1.3-2.5-1.7-2.9-.7-4.5-1.5-4.5-3.8 0-2.4 2.1-4 4.8-4 2 0 3.6.7 4.5 1.7l-1.5 1.6c-.7-.8-1.8-1.2-3-1.2-1.3 0-2.1.6-2.1 1.4 0 .8.6 1.1 2.4 1.5 3.1.7 4.7 1.6 4.7 3.9 0 2.6-2.1 4.2-5.2 4.2-2.3 0-4.4-.9-5.3-2.4l1.9-1.9z"/>
+                    </svg>
+                </a>
             </div>
         </div>
         
@@ -453,13 +448,10 @@
             }
         }
 
-        // 🌟 2. FETCH YOUTUBE VIDEOS FUNCTION (FIXED MASTER RAW LINK & CACHE BYPASS)
+        // 🌟 2. FETCH YOUTUBE VIDEOS FUNCTION
         async function loadVideos() {
             try {
-                // සදහටම අප්ඩේට් වෙන Master Raw Link එක සෙට් කරා මචං
                 const rawUrl = "https://gist.githubusercontent.com/rhythmic-beats-genz/af3e05652f6d509849a4f5ae5762564d/raw/my-videos.txt";
-                
-                // ?nocache කෑල්ල නිසා Gist එක අප්ඩේට් කරපු ගමන් ලයිව් වීඩියෝ ටික සයිට් එකට එනවා
                 const res = await fetch(`${rawUrl}?nocache=${new Date().getTime()}`);
                 
                 if (!res.ok) throw new Error("Video Gist data fetch failed");
@@ -522,49 +514,16 @@
             }
         }
 
-        // 🌟 3. FIXED AFFILIATE MARKETS FUNCTION (DIRECT INJECT)
-        async function loadAffiliateMarkets() {
-            const markets = [
-              {
-                "companyName": "Amazon",
-                "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
-                "affiliateLink": "#"
-              },
-              {
-                "companyName": "Fiverr",
-                "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/1/18/Fiverr_Logo_09.2020.svg",
-                "affiliateLink": "#"
-              },
-              {
-                "companyName": "AliExpress",
-                "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3b/AliExpress_logo.svg",
-                "affiliateLink": "#"
-              }
-            ];
-            
-            const container = document.getElementById('market-container');
-            container.innerHTML = ''; 
-
-            markets.forEach(market => {
-                const link = document.createElement('a');
-                link.className = 'market-item';
-                link.href = market.affiliateLink;
-                link.innerHTML = `<img src="${market.logoUrl}" alt="${market.companyName}">`;
-                
-                link.addEventListener('click', (e) => {
-                    if(market.affiliateLink === '#') {
-                        e.preventDefault(); 
-                        alert(`${market.companyName} Affiliate Link is Coming Soon! 🔥`);
-                    }
-                });
-
-                container.appendChild(link);
+        // 🌟 3. FIXED AFFILIATE BUTTON CLICKS
+        document.querySelectorAll('.market-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('Affiliate Link is Coming Soon! 🔥');
             });
-        }
+        });
         
         loadTracks();
         loadVideos();
-        loadAffiliateMarkets();
 
         /* MAXIMUM SECURITY SHIELD */
         document.addEventListener('contextmenu', e => e.preventDefault());
