@@ -31,7 +31,7 @@
             border: 2px solid #00f2fe;
             padding: 45px 30px;
             border-radius: 24px;
-            background: rgba(13, 13, 18, 0.85);
+            background: rgba(13, 13, 18, 0.95);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             display: flex;
@@ -39,8 +39,9 @@
             align-items: center;
             width: 100%;
             max-width: 380px;
-            box-shadow: 0 0 50px rgba(0, 242, 254, 0.25), inset 0 0 20px rgba(0, 242, 254, 0.05);
+            box-shadow: 0 0 50px rgba(0, 242, 254, 0.3), inset 0 0 20px rgba(0, 242, 254, 0.1);
             text-align: center;
+            box-sizing: border-box;
         }
 
         /* Logo inside Frame */
@@ -78,12 +79,13 @@
             margin-bottom: 30px; 
             display: block;
             width: 100%;
+            box-sizing: border-box;
         }
         .intro-btn:hover {
             background: #00f2fe;
             color: #07070a;
             box-shadow: 0 0 30px rgba(0, 242, 254, 0.7);
-            transform: scale(1.03);
+            transform: scale(1.02);
         }
 
         /* Professional Cinematic Bottom Text */
@@ -385,7 +387,7 @@
 </head>
 <body>
 
-    <!-- SYSTEM INTRO SCREEN (NEW FRAME BOX DESIGN) -->
+    <!-- SYSTEM INTRO SCREEN (PREMIUM BOX DESIGN) -->
     <div id="intro-overlay">
         <div class="intro-frame">
             <!-- 1. Logo On Top -->
@@ -394,7 +396,7 @@
             <!-- 2. Button In The Middle -->
             <button class="intro-btn" onclick="startExperience()">INITIALIZE SYSTEM</button>
             
-            <!-- 3. Cinematic Text Below Button -->
+            <!-- 3. Professional Cinematic Bottom Text -->
             <div id="typewriter-text" class="intro-subtext"></div>
         </div>
     </div>
@@ -415,7 +417,7 @@
 
         <div class="section-title">Latest Tracks</div>
         <div id="track-list-container">
-            <p style="color: #64748b; font-size: 0.85rem;">Loading Epic Tracks...</p>
+            <p style="color: #64748b; font-size: 0.85rem;">Securing Beats...</p>
         </div>
         <div class="see-more-container" id="see-more-wrap"></div>
 
@@ -424,7 +426,7 @@
             <iframe id="main-yt-player" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div id="video-list-container">
-            <p style="color: #64748b; font-size: 0.85rem;">Loading Videos...</p>
+            <p style="color: #64748b; font-size: 0.85rem;">Securing Videos...</p>
         </div>
         <div class="see-more-container" id="see-more-videos-wrap"></div>
 
@@ -469,7 +471,7 @@
 
         const MARKET_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/462450b5a5a144f568d69dd8699a6082/raw/b7b11a82873fab7456d06a55e9aa908723f23c38/market.txt";
 
-        // TYPEWRITER EFFECT
+        // TYPEWRITER EFFECT WITH CINEMATIC SPACING
         const text = "RHYTHMIC BEATS PRESENTS... OPERATE IN SILENCE.";
         let idx = 0;
         function typeWriter() {
@@ -479,30 +481,38 @@
                 setTimeout(typeWriter, 80);
             }
         }
-        
-        window.addEventListener('DOMContentLoaded', () => {
-            typeWriter();
-        });
+        window.addEventListener('DOMContentLoaded', typeWriter);
 
-        // SYSTEM INITIALIZATION WITH HIGHLY TUNED HARD DEEP MALE VOICE
+        // SECURE ASYNCHRONOUS SYSTEM VOICE PRE-LOADER
+        let systemVoices = [];
+        function loadSystemVoices() {
+            if ('speechSynthesis' in window) {
+                systemVoices = window.speechSynthesis.getVoices();
+            }
+        }
+        loadSystemVoices();
+        if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
+            window.speechSynthesis.onvoiceschanged = loadSystemVoices;
+        }
+
+        // START SYSTEM INTERFACE WITH REAL HARD DEEP BARITONE VOICE
         function startExperience() {
             if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel(); // Clear any queued voices
+                window.speechSynthesis.cancel(); // Flush queue
                 const msg = new SpeechSynthesisUtterance("Rhythmic Beats Presents. Operate in silence.");
-                
-                // Fine-tuning for ultra professional deep heavy tone
                 msg.lang = 'en-US';
-                msg.rate = 0.72; // Slightly slowed down for dominance
-                msg.pitch = 0.1; // Maximum depth for a powerful heavy baritone tone
+                msg.rate = 0.72; // Heavy slowed down speed
+                msg.pitch = 0.1; // Maximum deep male chest voice pitch
                 msg.volume = 1.0;
 
-                // Forcing male voice choice safely across platforms
-                const voices = window.speechSynthesis.getVoices();
-                const deepVoice = voices.find(v => v.name.toLowerCase().includes('google us english male') || 
-                                                  v.name.toLowerCase().includes('male') || 
-                                                  v.name.toLowerCase().includes('david'));
+                if (systemVoices.length === 0) systemVoices = window.speechSynthesis.getVoices();
+                
+                // Prioritize best heavy male engines (Google Male, David, Microsoft Male)
+                const deepVoice = systemVoices.find(v => v.name.toLowerCase().includes('google us english male') || 
+                                                         v.name.toLowerCase().includes('male') || 
+                                                         v.name.toLowerCase().includes('david') ||
+                                                         v.name.toLowerCase().includes('microsoft david'));
                 if (deepVoice) msg.voice = deepVoice;
-
                 window.speechSynthesis.speak(msg);
             }
 
@@ -511,18 +521,18 @@
             setTimeout(() => { overlay.style.display = 'none'; }, 500);
         }
 
-        // DYNAMIC DATA LOADING AND LATEST ORDER SORTING SYSTEM
+        // DYNAMIC CONTENT LOGIC WITH CHRONOLOGICAL SORTING
         async function loadTracks() {
             try {
                 const res = await fetch(`https://gist.githubusercontent.com/rhythmic-beats-genz/64a1f7ed6c5e1105064919c2774d2f01/raw/my-beats.json?nocache=${new Date().getTime()}`);
                 if (!res.ok) throw new Error("Gist failed");
                 const content = await res.json();
                 
-                // RESTORED: Sort by timestamp securely so the newest tracks stay on top
+                // SECURED SORT: Newest beats on top
                 cachedTracks = content.sort((a, b) => (b.timestamp || b.time) - (a.timestamp || a.time));
                 renderTracks();
             } catch (error) {
-                document.getElementById('track-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Tracks loaded securely.</p>`;
+                document.getElementById('track-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Tracks secured.</p>`;
             }
         }
 
@@ -555,12 +565,12 @@
                 if (!res.ok) throw new Error("Video Gist failed");
                 const content = await res.json();
                 
-                // RESTORED: Latest sorting mechanics for videos
+                // SECURED SORT: Latest videos on top
                 cachedVideos = content.sort((a, b) => b.timestamp - a.timestamp);
                 if(cachedVideos.length > 0) setMainVideo(cachedVideos[0].videoId);
                 renderVideos();
             } catch (error) {
-                document.getElementById('video-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Videos loaded securely.</p>`;
+                document.getElementById('video-list-container').innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Videos secured.</p>`;
             }
         }
 
@@ -628,16 +638,15 @@
 
             } catch (error) {
                 console.error(error);
-                container.innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Markets loaded securely.</p>`;
+                container.innerHTML = `<p style="color: #64748b; font-size: 0.85rem;">Markets secured.</p>`;
             }
         }
         
-        // Boot execution
         loadTracks();
         loadVideos();
         loadAffiliateMarkets();
 
-        // Anti-Inspect Elements Security System
+        // Anti-Inspect Security
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.onkeydown = function(e) {
             if (e.keyCode == 123) return false;
