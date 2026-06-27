@@ -1,12 +1,12 @@
-body { background: #050505; color: #fff; margin: 0; padding-top: 90px; font-family: sans-serif; }
-nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: center; gap: 8px; padding: 15px 5px; background: #000; border-bottom: 2px solid #00d4ff; z-index: 1000; flex-wrap: wrap; box-sizing: border-box; }
-.nav-btn { background: none; border: 1px solid #00d4ff; color: #00d4ff; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-size: 13px; font-weight: bold; }
+body { background: #050505; color: #fff; margin: 0; padding-top: 70px; font-family: sans-serif; }
+nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: center; padding: 10px 0; background: #000; border-bottom: 2px solid #00d4ff; z-index: 1000; }
+.nav-btn { background: none; border: 1px solid #00d4ff; color: #00d4ff; padding: 8px 12px; margin: 0 5px; border-radius: 5px; cursor: pointer; font-size: 13px; font-weight: bold; }
 .page { padding: 20px; text-align: center; }
 .shorts-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; justify-items: center; }
 .video-card { background: #111; padding: 15px; border-radius: 12px; width: 100%; max-width: 315px; }
 iframe { width: 100%; height: 500px; border-radius: 8px; }
-.logo { width: 120px; height: 120px; border-radius: 50%; border: 2px solid #00d4ff; margin: 20px auto; display: block; }
-.theme-text { color: #00d4ff; text-transform: uppercase; margin-bottom: 20px; }
+.logo { width: 100px; border-radius: 50%; border: 2px solid #00d4ff; margin: 20px 0; }
+.theme-text { color: #00d4ff; text-transform: uppercase; }
 .reactions { display: flex; justify-content: center; gap: 15px; padding-top: 15px; }
-.reactions button { background: #1a1a1a; border: 1px solid #333; color: #fff; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-size: 16px; transition: 0.3s; }
+.reactions button { background: #1a1a1a; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 5px; cursor: pointer; transition: 0.3s; }
 .reactions button.active { background: #00d4ff; color: #000; border-color: #00d4ff; box-shadow: 0 0 10px #00d4ff; }
