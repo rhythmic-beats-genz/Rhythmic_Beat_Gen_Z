@@ -7,32 +7,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <nav>
-        <a href="#shorts">Shorts</a>
-        <a href="#rate">Rate</a>
-        <a href="#suggest">Suggest</a>
-        <a href="#contact">Contact</a>
+        <button onclick="show('shorts')">Shorts</button>
+        <button onclick="show('rate')">Rate</button>
+        <button onclick="show('suggest')">Suggest</button>
+        <button onclick="show('contact')">Contact</button>
     </nav>
 
-    <section id="shorts">
-        <h1>Shorts</h1>
-        <div class="shorts-container">
-            <iframe src="https://www.youtube.com/embed/2Vy7cZ_VG_g" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/7oQQoAvMxCo" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/rC4IPpp7ZKY" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/GSWtMeceJRE" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/MaWsDYHp7Ok" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/z-cLJCeN290" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/ZTAV5tCvHf8" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/IpDRz5L8j0k" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/usCzbEXXUTg" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </section>
+    <div id="shorts" class="page"><div id="shorts-container" class="shorts-container"></div></div>
+    <div id="rate" class="page" style="display:none;"><h1>Rate</h1><p>Coming soon...</p></div>
+    <div id="suggest" class="page" style="display:none;"><h1>Suggest</h1><p>Coming soon...</p></div>
+    <div id="contact" class="page" style="display:none;"><h1>Contact</h1><p><a href="mailto:your-email@gmail.com">Send Email</a></p></div>
 
-    <section id="rate"><h1>Rate</h1><p>Coming soon...</p></section>
-    <section id="suggest"><h1>Suggest</h1><p>Coming soon...</p></section>
-    <section id="contact"><h1>Contact</h1><p><a href="mailto:your-email@gmail.com">Send Email</a></p></section>
-
+    <script>
+        function show(id) {
+            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+        
+        // METHANATA OYAGE RAW GIST LINK EKA DANNA
+        fetch('PASTE_YOUR_RAW_GIST_LINK_HERE')
+            .then(response => response.json())
+            .then(videos => {
+                videos.sort((a, b) => new Date(b.date) - new Date(a.date));
+                const container = document.getElementById('shorts-container');
+                videos.forEach(v => {
+                    container.innerHTML += `<iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe>`;
+                });
+            });
+    </script>
 </body>
 </html>
