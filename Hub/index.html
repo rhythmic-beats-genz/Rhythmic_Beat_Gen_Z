@@ -19,16 +19,18 @@
     <div id="rate" class="page" style="display:none;">
         <img src="1000098019.webp" class="logo">
         <h2 class="theme-text">OPERATE IN SILENCE</h2>
-        <div class="star-rating"><span onclick="rate(5)">★</span><span onclick="rate(4)">★</span><span onclick="rate(3)">★</span><span onclick="rate(2)">★</span><span onclick="rate(1)">★</span></div>
-        <textarea class="neon-input" placeholder="Feedback..."></textarea>
-        <button class="neon-btn" onclick="alert('Sent!')">📩</button>
+        <div class="star-rating" id="star-rating">
+            <span onclick="setRating(5)">★</span><span onclick="setRating(4)">★</span><span onclick="setRating(3)">★</span><span onclick="setRating(2)">★</span><span onclick="setRating(1)">★</span>
+        </div>
+        <textarea id="rate-text" class="neon-input" placeholder="Feedback..."></textarea>
+        <button class="neon-btn" onclick="submitData('rate')">📩</button>
     </div>
 
     <div id="suggest" class="page" style="display:none;">
         <img src="1000098019.webp" class="logo">
         <h2 class="theme-text">OPERATE IN SILENCE</h2>
-        <textarea class="neon-input" placeholder="Suggest..."></textarea>
-        <button class="neon-btn" onclick="alert('Sent!')">🚀</button>
+        <textarea id="suggest-text" class="neon-input" placeholder="Suggest..."></textarea>
+        <button class="neon-btn" onclick="submitData('suggest')">🚀</button>
     </div>
 
     <div id="contact" class="page" style="display:none;">
@@ -38,16 +40,30 @@
     </div>
 
     <script>
+        let currentRating = 0;
+        function setRating(r) { currentRating = r; alert('Rating set to ' + r); }
+        
+        async function submitData(type) {
+            const url = "https://script.google.com/macros/s/AKfycbyPp_Ad84bu4DA-wnhqrUM7rWZ6QCRcgK-5paDDA4NV7DgUoH3_NMaC2QrKMz1FWDhCZA/exec";
+            const text = type === 'rate' ? document.getElementById('rate-text').value : document.getElementById('suggest-text').value;
+            const rating = type === 'rate' ? currentRating : 'N/A';
+            
+            await fetch(url, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ rating: rating, suggestion: text })
+            });
+            alert("Sent successfully!");
+        }
+
         const videos = [{"id": "usCzbEXXUTg", "date": "2026-06-27T15:00:00"}, {"id": "IpDRz5L8j0k", "date": "2026-06-26T15:00:00"}, {"id": "ZTAV5tCvHf8", "date": "2026-06-25T15:00:00"}, {"id": "z-cLJCeN290", "date": "2026-06-24T15:00:00"}, {"id": "MaWsDYHp7Ok", "date": "2026-06-23T15:00:00"}, {"id": "GSWtMeceJRE", "date": "2026-06-22T15:00:00"}, {"id": "rC4IPpp7ZKY", "date": "2026-06-21T15:00:00"}, {"id": "7oQQoAvMxCo", "date": "2026-06-20T15:00:00"}, {"id": "2Vy7cZ_VG_g", "date": "2026-06-19T15:00:00"}];
         function show(id) { document.querySelectorAll('.page').forEach(p => p.style.display = 'none'); document.getElementById(id).style.display = 'block'; }
-        function rate(stars) { alert('Rated ' + stars + ' stars!'); }
         function react(btn) { btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
         
         const container = document.getElementById('shorts-container');
         videos.sort((a, b) => new Date(b.date) - new Date(a.date));
-        videos.forEach(v => { 
-            container.innerHTML += `<div class="video-card"><iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe><div class="reactions"><button onclick="react(this)">❤️</button><button onclick="react(this)">👍</button><button onclick="react(this)">👎</button></div></div>`; 
-        });
+        videos.forEach(v => { container.innerHTML += `<div class="video-card"><iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe><div class="reactions"><button onclick="react(this)">❤️</button><button onclick="react(this)">👍</button><button onclick="react(this)">👎</button></div></div>`; });
     </script>
 </body>
 </html>
