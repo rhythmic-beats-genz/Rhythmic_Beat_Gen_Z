@@ -17,17 +17,17 @@
     <div id="shorts" class="page"><div id="shorts-container" class="shorts-container"></div></div>
     
     <div id="rate" class="page" style="display:none;">
-        <img src="1000098019.webp" class="logo">
+        <img src="1000098019.webp" class="logo" alt="Logo">
         <h2 class="theme-text">OPERATE IN SILENCE</h2>
         <h1>Rate</h1>
     </div>
     <div id="suggest" class="page" style="display:none;">
-        <img src="1000098019.webp" class="logo">
+        <img src="1000098019.webp" class="logo" alt="Logo">
         <h2 class="theme-text">OPERATE IN SILENCE</h2>
         <h1>Suggest</h1>
     </div>
     <div id="contact" class="page" style="display:none;">
-        <img src="1000098019.webp" class="logo">
+        <img src="1000098019.webp" class="logo" alt="Logo">
         <h2 class="theme-text">OPERATE IN SILENCE</h2>
         <h1>Contact</h1>
     </div>
@@ -50,6 +50,11 @@
             document.getElementById(id).style.display = 'block';
         }
 
+        function react(btn) {
+            btn.style.background = '#00d4ff';
+            btn.style.color = '#000';
+        }
+
         const container = document.getElementById('shorts-container');
         videos.sort((a, b) => new Date(b.date) - new Date(a.date));
         videos.forEach(v => {
@@ -57,9 +62,9 @@
                 <div class="video-card">
                     <iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe>
                     <div class="reactions">
-                        <button onclick="alert('Liked Heart')">❤️</button>
-                        <button onclick="alert('Liked')">👍</button>
-                        <button onclick="alert('Disliked')">👎</button>
+                        <button onclick="react(this)">❤️</button>
+                        <button onclick="react(this)">👍</button>
+                        <button onclick="react(this)">👎</button>
                     </div>
                 </div>`;
         });
