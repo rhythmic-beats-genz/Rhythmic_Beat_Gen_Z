@@ -40,7 +40,8 @@
     </div>
 
     <script>
-        const GIST_RAW_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/db979807d4a0a16b3320ff9d81522c26/raw/148587cd000817257c36d4c0d07512cc3e7d10dc/shorts.js";
+        // FIXED: Commit hash අයින් කරලා හැමදාම අලුත්ම එක ස්වයංක්‍රීයව ලෝඩ් වෙන ස්ථිර ලින්ක් එකක් හැදුවා
+        const GIST_RAW_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/db979807d4a0a16b3320ff9d81522c26/raw/shorts.js";
         let currentRating = 0;
         function setRating(r) { currentRating = r; alert('Rating set to ' + r); }
         
@@ -66,8 +67,12 @@
             const videos = await response.json();
             const container = document.getElementById('shorts-container');
             container.innerHTML = '';
+            
+            // Dates පිළිවෙළට sorting logic එක වැඩ
             videos.sort((a, b) => new Date(b.date) - new Date(a.date));
-            videos.forEach(v => { container.innerHTML += `<div class="video-card"><iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe><div class="reactions"><button onclick="react(this)">❤️</button><button onclick="react(this)">👍</button><button onclick="react(this)">👎</button></div></div>`; });
+            videos.forEach(v => { 
+                container.innerHTML += `<div class="video-card"><iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe><div class="reactions"><button onclick="react(this)">❤️</button><button onclick="react(this)">👍</button><button onclick="react(this)">👎</button></div></div>`; 
+            });
         }
         
         loadHubVideos();
