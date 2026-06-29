@@ -40,7 +40,7 @@
     </div>
 
     <script>
-        // FIXED: Gist එකේ නම shorts.json කළාම මේ ස්ථිර ලින්ක් එකෙන් 100% ක්ම වැඩ කරනවා
+        // FIXED: උඹ Gist එකේ නම වෙනස් කරපු නිසා ලින්ක් එක shorts.json විදිහට නිවැරදි කළා
         const GIST_RAW_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/db979807d4a0a16b3320ff9d81522c26/raw/shorts.json";
         let currentRating = 0;
         function setRating(r) { currentRating = r; alert('Rating set to ' + r); }
@@ -58,6 +58,10 @@
             });
             alert("Sent successfully!");
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            show('shorts');
+        });
 
         function show(id) { document.querySelectorAll('.page').forEach(p => p.style.display = 'none'); document.getElementById(id).style.display = 'block'; }
         function react(btn) { btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
