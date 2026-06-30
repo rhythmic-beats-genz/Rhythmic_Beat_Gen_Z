@@ -5,16 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rhythmic Hub</title>
     <link rel="stylesheet" href="style.css">
+    <!-- TikTok Embed System Script -->
+    <script async src="https://www.tiktok.com/embed.js"></script>
 </head>
 <body>
     <nav>
         <button class="nav-btn" onclick="show('shorts')">Shorts</button>
+        <button class="nav-btn" onclick="show('tiktok')">TikTok Hub</button>
         <button class="nav-btn" onclick="show('rate')">Rate</button>
         <button class="nav-btn" onclick="show('suggest')">Suggest</button>
         <button class="nav-btn" onclick="show('contact')">Contact</button>
     </nav>
 
     <div id="shorts" class="page"><div id="shorts-container" class="shorts-container"></div></div>
+    
+    <!-- TIKTOK PAGE CONTAINER -->
+    <div id="tiktok" class="page" style="display:none;">
+        <div id="tiktok-container" class="shorts-container">
+            <p style="color: #64748b; font-size: 0.85rem;">Loading TikTok Hub...</p>
+        </div>
+    </div>
     
     <div id="rate" class="page" style="display:none;">
         <img src="1000098019.webp" class="logo">
@@ -40,8 +50,12 @@
     </div>
 
     <script>
-        // FIXED: උඹ Gist එකේ නම වෙනස් කරපු නිසා ලින්ක් එක shorts.json විදිහට නිවැරදි කළා
-        const GIST_RAW_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/db979807d4a0a16b3320ff9d81522c26/raw/shorts.json";
+        // YouTube Shorts සඳහා පරණ Gist ස්ථිර ලින්ක් එක
+        const SHORTS_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/db979807d4a0a16b3320ff9d81522c26/raw/shorts.json";
+        
+        // TikTok සඳහා උඹ දැන් දීපු අලුත් Gist එකේ ස්ථිර ලින්ක් එක FIXED කරලා සෙට් කළා 👇
+        const TIKTOK_GIST_URL = "https://gist.githubusercontent.com/rhythmic-beats-genz/f3260545c514780664b189fd76bb7f5f/raw/tiktok.json";
+        
         let currentRating = 0;
         function setRating(r) { currentRating = r; alert('Rating set to ' + r); }
         
@@ -63,12 +77,17 @@
             show('shorts');
         });
 
-        function show(id) { document.querySelectorAll('.page').forEach(p => p.style.display = 'none'); document.getElementById(id).style.display = 'block'; }
+        function show(id) { 
+            document.querySelectorAll('.page').forEach(p => p.style.display = 'none'); 
+            document.getElementById(id).style.display = 'block'; 
+        }
+        
         function react(btn) { btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
         
-        async function loadHubVideos() {
+        // YouTube Shorts ලෝඩරය
+        async function loadYouTubeShorts() {
             try {
-                const response = await fetch(GIST_RAW_URL + "?nocache=" + new Date().getTime());
+                const response = await fetch(SHORTS_GIST_URL + "?nocache=" + new Date().getTime());
                 const videos = await response.json();
                 const container = document.getElementById('shorts-container');
                 container.innerHTML = '';
@@ -78,11 +97,45 @@
                     container.innerHTML += `<div class="video-card"><iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe><div class="reactions"><button onclick="react(this)">❤️</button><button onclick="react(this)">👍</button><button onclick="react(this)">👎</button></div></div>`; 
                 });
             } catch (error) {
-                console.error("Error loading shorts:", error);
+                console.error("Error loading YouTube shorts:", error);
             }
         }
         
-        loadHubVideos();
+        // TikTok Gist ලෝඩරය
+        async function loadTikTokHub() {
+            try {
+                const response = await fetch(TIKTOK_GIST_URL + "?nocache=" + new Date().getTime());
+                const videos = await response.json();
+                const container = document.getElementById('tiktok-container');
+                container.innerHTML = '';
+                
+                // අලුත්ම වීඩියෝ උඩට එන්න sort කරනවා
+                videos.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                videos.forEach(v => {
+                    container.innerHTML += `
+                        <div class="video-card" style="padding: 10px; background: #161621; border-radius: 14px; margin-bottom: 15px; display: flex; flex-direction: column; align-items: center;">
+                            <blockquote class="tiktok-embed" data-video-id="${v.id}" style="max-width: 605px; min-width: 325px;">
+                                <section> <a target="_blank" title="@rythemic_beats_gen_z" href="https://www.tiktok.com/@rythemic_beats_gen_z?refer=embed">Loading TikTok...</a> </section>
+                            </blockquote>
+                        </div>`;
+                });
+                
+                // TikTok Script එක ඩයිනමික් රීලෝඩ් කරනවා
+                if (window.TiktokEmbedding) {
+                    window.TiktokEmbedding.init();
+                } else if (window.tiktokEmbed) {
+                    window.tiktokEmbed.reload();
+                }
+                
+            } catch (error) {
+                console.error("Error loading TikTok hub:", error);
+                document.getElementById('tiktok-container').innerHTML = '<p style="color: #64748b; font-size: 0.85rem;">TikTok Hub Error.</p>';
+            }
+        }
+        
+        loadYouTubeShorts();
+        loadTikTokHub();
     </script>
 </body>
 </html>
